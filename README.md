@@ -38,7 +38,10 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
+      # 使用 actions/checkout 后，你的代码就会位于 $GITHUB_WORKSPACE 目录
       - uses: actions/checkout@v2
+
+      # 统计数据，修改 $GITHUB_WORKSPACE/README.md
       - name: My GitHub Status
         uses: yihong0618/github-readme-stats@main
         with:
