@@ -38,7 +38,7 @@ var myContributedTitle = "## The repos I contributed to\n"
 func init() {
 	flag.Int64Var(&telegramID, "tgid", 0, "telegram room id")
 	flag.IntVar(&staredNumber, "stared", 10, "stared number random")
-	flag.IntVar(&reposNumber, "repos", 0, "number of personal repos to show")
+	flag.IntVar(&reposNumber, "repos", 10, "number of personal repos to show (default 10, 0 for all)")
 	flag.StringVar(&telegramToken, "tgtoken", "", "token from telegram")
 	flag.StringVar(&githubUserName, "username", "", "github user name")
 	flag.StringVar(&githubToken, "ghtoken", "", "token from github")
@@ -187,7 +187,6 @@ func makeCreatedRepos(repos []*github.Repository) ([]myRepoInfo, int, int) {
 	longest := 0
 	myRepos := []myRepoInfo{}
 	for _, repo := range repos {
-
 		// support fork if this fork stars > 5
 		if !*repo.Fork || *repo.StargazersCount >= 5 {
 			create := (*repo.CreatedAt).String()[:10]
